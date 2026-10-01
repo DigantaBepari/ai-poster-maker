@@ -1,0 +1,146 @@
+.hero {
+  max-width: 1320px;
+  margin: auto;
+  padding: 64px 5% 74px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #d9e6d7;
+  border-radius: 30px;
+  background: #edf3e8;
+  padding: 8px 14px;
+  font-size: 12px;
+  margin-bottom: 24px;
+}
+.badge span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.hero h1 {
+  font-size: clamp(40px, 4.8vw, 65px);
+  line-height: 1.4;
+  letter-spacing: -1.7px;
+  margin-bottom: 21px;
+}
+.hero h1 span {
+  color: var(--green);
+}
+.hero-copy > p {
+  font-size: 16px;
+}
+.hero-actions {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  margin-top: 30px;
+}
+.button {
+  display: inline-flex;
+  justify-content: center;
+  gap: 24px;
+  align-items: center;
+  background: var(--green);
+  border: 1px solid var(--green);
+  color: white;
+  border-radius: 8px;
+  padding: 13px 23px;
+  font-weight: 550;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+.button:hover {
+  background: #0b5736;
+}
+.button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.text-link {
+  font-size: 14px;
+}
+.hero-note {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 29px;
+}
+.hero-note > span:first-child {
+  color: var(--green);
+  font-size: 19px;
+}
+.hero-gallery {
+  background: #e9ede2;
+  border-radius: 14px;
+  padding: 20px 25px;
+  min-height: 450px;
+  position: relative;
+  overflow: hidden;
+  background-image: radial-gradient(#d3dacb 1px, transparent 1px);
+  background-size: 15px 15px;
+}
+.gallery-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #707a69;
+}
+.gallery-label span {
+  font-size: 20px;
+  color: var(--green);
+}
+.poster-stack {
+  position: relative;
+  height: 350px;
+  margin: 18px auto;
+  width: 90%;
+}
+.hero-poster {
+  position: absolute;
+  height: 310px;
+  width: 248px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 13px 25px #183b312b;
+  top: 16px;
+}
+.hero-poster.back {
+  right: 0;
+  transform: rotate(11deg);
+}
+.hero-poster.front {
+  left: 12px;
+  transform: rotate(-9deg);
+  top: 7px;
+}
+.floating-label {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: white;
+  border-radius: 7px;
+  box-shadow: 0 5px 20px #0000000a;
+  padding: 12px 17px;
+  font-size: 11px;
+  transform: rotate(-4deg);
+}
+.floating-label span {
+  font-size: 20px;
+  color: #c4933e;
+  margin-right: 7px;
+}
+.gallery-bottom {
+  font-size: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #7b8274;
+}

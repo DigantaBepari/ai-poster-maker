@@ -1,0 +1,71 @@
+.auth-page {
+  max-width: 1050px;
+  margin: 50px auto 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  overflow: hidden;
+  background: white;
+}
+.auth-art {
+  padding: 50px;
+  background: #eaf0e4;
+  position: relative;
+  overflow: hidden;
+}
+.auth-art h2 {
+  font-size: 40px;
+  margin-top: 70px;
+}
+.auth-orbit {
+  width: 250px;
+  height: 250px;
+  border: 1px solid #a6bda4;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -70px;
+  right: -50px;
+  box-shadow:
+    0 0 0 35px #dee8d9,
+    0 0 0 36px #bacbb2;
+}
+.auth-form {
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.auth-form h1 {
+  font-size: 27px;
+  margin: 0;
+}
+.auth-form p {
+  font-size: 13px;
+  margin: 0;
+}
+.auth-form > .eyebrow {
+  margin: 0;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+}
+.field input,
+.field select {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 11px 13px;
+  background: var(--paper);
+  width: 100%;
+  color: var(--ink);
+}
+.auth-switch {
+  text-align: center;
+}
+.auth-switch a {
+  color: var(--green);
+  font-weight: 600;
+}

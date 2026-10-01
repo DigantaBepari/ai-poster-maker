@@ -1,0 +1,134 @@
+@media (min-width: 1450px) {
+  .hero {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+  .hero-gallery {
+    min-height: 490px;
+  }
+  .poster-stack {
+    height: 390px;
+  }
+  .hero-poster {
+    height: 350px;
+    width: 280px;
+  }
+}
+@media (max-width: 850px) {
+  .hero {
+    gap: 25px;
+  }
+  .hero h1 {
+    font-size: 44px;
+  }
+  .hero-gallery {
+    min-height: 365px;
+    padding: 16px;
+  }
+  .poster-stack {
+    height: 270px;
+    width: 100%;
+  }
+  .hero-poster {
+    height: 235px;
+    width: 188px;
+  }
+  .occasion-strip {
+    gap: 20px;
+  }
+  .occasion-strip > div {
+    gap: 12px;
+    font-size: 12px;
+  }
+  .how-section {
+    grid-template-columns: 1fr;
+  }
+  .template-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .navbar {
+    padding: 20px 6%;
+  }
+  .brand {
+    font-size: 21px;
+  }
+  nav {
+    gap: 14px;
+    font-size: 11px;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 38px 6%;
+    gap: 35px;
+  }
+  .hero h1 {
+    font-size: 44px;
+  }
+  .hero-copy > p {
+    font-size: 14px;
+  }
+  .hero-gallery {
+    min-height: 410px;
+  }
+  .poster-stack {
+    height: 310px;
+    max-width: 330px;
+  }
+  .hero-poster {
+    height: 275px;
+    width: 220px;
+  }
+  .occasion-strip {
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+  .occasion-strip > div {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .how-section {
+    padding: 35px 6%;
+    gap: 20px;
+  }
+  .steps {
+    gap: 14px;
+  }
+  .steps h3 {
+    font-size: 13px;
+  }
+  .steps p {
+    font-size: 11px;
+  }
+  footer {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px 6%;
+  }
+  footer > span:last-child {
+    width: 100%;
+  }
+  .template-grid {
+    grid-template-columns: 1fr;
+  }
+  .auth-page {
+    display: block;
+    margin: 25px 5%;
+  }
+  .auth-art {
+    display: none;
+  }
+  .auth-form {
+    padding: 28px;
+  }
+  .workspace {
+    padding: 35px 6%;
+  }
+  .hero-note {
+    font-size: 10px;
+    gap: 8px;
+  }
+}

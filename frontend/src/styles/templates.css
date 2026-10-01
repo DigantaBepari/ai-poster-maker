@@ -1,0 +1,74 @@
+.workspace {
+  max-width: 1200px;
+  min-height: 75vh;
+  margin: auto;
+  padding: 45px 5%;
+}
+.muted {
+  color: var(--muted);
+}
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+.filters button {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 30px;
+  padding: 9px 17px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.filters button[aria-pressed="true"] {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.template-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  overflow: hidden;
+}
+.template-preview {
+  background: #eaeee5;
+  padding: 22px;
+  position: relative;
+}
+.template-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 4px 12px #0002;
+}
+.photo-count {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  border-radius: 20px;
+  background: #ffffffed;
+  padding: 5px 12px;
+  font-size: 10px;
+}
+.template-meta {
+  padding: 20px;
+}
+.template-meta h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.template-meta a {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--green);
+  border-top: 1px solid var(--line);
+  padding-top: 13px;
+}

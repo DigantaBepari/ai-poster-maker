@@ -1,0 +1,149 @@
+.poster-editor {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 35px;
+  align-items: start;
+}
+.poster-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+fieldset {
+  border: 1px solid var(--line);
+  padding: 22px;
+  border-radius: 10px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+legend {
+  font-weight: 600;
+  padding: 0 8px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.field textarea {
+  font: inherit;
+  resize: vertical;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 11px 13px;
+  background: var(--paper);
+  width: 100%;
+  color: var(--ink);
+}
+.field-error {
+  color: #9e3024;
+  font-size: 12px;
+}
+.small {
+  font-size: 12px;
+}
+.consent {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+  margin: 12px 0;
+}
+.consent input {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  accent-color: var(--green);
+}
+.photo-upload-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.photo-tile {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.photo-tile img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+.photo-tile button {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  border: 0;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background: #8a342d;
+  color: white;
+}
+.upload-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #91ad94;
+  border-radius: 9px;
+  padding: 20px;
+  cursor: pointer;
+  color: var(--green);
+  position: relative;
+}
+.upload-zone input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+}
+.upload-zone.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.template-sidebar {
+  position: sticky;
+  top: 25px;
+  padding: 22px;
+  background: #eaf0e4;
+  border-radius: 12px;
+  min-width: 0;
+}
+.template-sidebar img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+.template-sidebar h3 {
+  font-size: 20px;
+}
+.template-sidebar p,
+.template-sidebar a {
+  font-size: 12px;
+}
+@media (max-width: 700px) {
+  .poster-editor {
+    grid-template-columns: 1fr;
+  }
+  .template-sidebar {
+    position: static;
+    order: -1;
+  }
+  .template-sidebar img {
+    max-height: 250px;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  fieldset {
+    padding: 16px;
+  }
+}

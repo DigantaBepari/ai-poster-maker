@@ -16,14 +16,12 @@ it("requires identity, rejects role injection and protects me", async () => {
   ).toBe(400);
   expect(
     (
-      await request(ctx.app)
-        .post("/api/auth/register")
-        .send({
-          name: "Test",
-          email: "injected@example.com",
-          password: "password123",
-          role: "admin",
-        })
+      await request(ctx.app).post("/api/auth/register").send({
+        name: "Test",
+        email: "injected@example.com",
+        password: "password123",
+        role: "admin",
+      })
     ).status,
   ).toBe(400);
   expect((await request(ctx.app).get("/api/auth/me")).status).toBe(401);
@@ -69,13 +67,11 @@ it("supports email and phone login while rejecting wrong passwords", async () =>
   ).toBe(401);
   expect(
     (
-      await request(ctx.app)
-        .post("/api/auth/login")
-        .send({
-          email: "owner@example.com",
-          phone: "+8801700000000",
-          password: "password123",
-        })
+      await request(ctx.app).post("/api/auth/login").send({
+        email: "owner@example.com",
+        phone: "+8801700000000",
+        password: "password123",
+      })
     ).status,
   ).toBe(400);
 });

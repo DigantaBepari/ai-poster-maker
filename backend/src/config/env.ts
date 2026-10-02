@@ -14,6 +14,19 @@ export const env = z
       defaults,
       z.coerce.number().int().min(1).max(65535).default(4000),
     ),
+    GENERATION_RATE_LIMIT: z.preprocess(
+      defaults,
+      z.coerce.number().int().min(1).default(10),
+    ),
+    GENERATION_CONCURRENCY: z.preprocess(
+      defaults,
+      z.coerce.number().int().min(1).max(2).default(1),
+    ),
+    PUPPETEER_EXECUTABLE_PATH: optional,
+    TRUST_PROXY_HOPS: z.preprocess(
+      defaults,
+      z.coerce.number().int().min(0).max(5).default(0),
+    ),
     MONGODB_URI: z.string().min(1),
     JWT_SECRET: z.string().min(32),
     JWT_EXPIRES_IN: z.preprocess(
@@ -32,7 +45,15 @@ export const env = z
     SEED_ADMIN_EMAIL: z.preprocess(defaults, z.email().optional()),
     SEED_ADMIN_PASSWORD: z.preprocess(
       defaults,
-      z.string().min(8).max(72).optional(),
+      z
+        .string()
+        .min(8)
+        .max(72)
+        .refine(
+          (v) => Buffer.byteLength(v) <= 72,
+          "Password exceeds bcrypt byte limit",
+        )
+        .optional(),
     ),
     MAX_REGENERATIONS: z.preprocess(
       defaults,

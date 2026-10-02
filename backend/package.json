@@ -9,9 +9,14 @@
     "start": "node --env-file-if-exists=.env dist/server.js",
     "lint": "eslint .",
     "test": "vitest run",
-    "seed": "node --env-file-if-exists=.env --import tsx src/seed/index.ts"
+    "seed": "node --env-file-if-exists=.env --import tsx src/seed/index.ts",
+    "render:sample": "tsx src/scripts/renderSample.ts"
   },
   "dependencies": {
+    "@fontsource/hind-siliguri": "^5.3.0",
+    "@fontsource/noto-sans-bengali": "^5.3.0",
+    "@fontsource/tiro-bangla": "^5.3.0",
+    "@google/genai": "^2.25.0",
     "bcrypt": "^6",
     "cloudinary": "^2",
     "cors": "^2",
@@ -21,6 +26,8 @@
     "jsonwebtoken": "^9",
     "mongoose": "^8",
     "multer": "^2",
+    "puppeteer": "^25.12.0",
+    "sharp": "^0.35.5",
     "zod": "^4"
   },
   "devDependencies": {

@@ -11,6 +11,7 @@ const form = new Schema(
     district: field,
     occasionType: { type: String, enum: occasions, required: true },
     headline: field,
+    photoConsent: { type: Boolean, required: true },
   },
   { _id: false },
 );
@@ -34,6 +35,9 @@ export const Poster = model(
         type: [String],
         validate: (v: string[]) => v.length <= 3,
       },
+      paletteHint: { type: String, default: "template" },
+      generatedImagePublicId: String,
+      generatedPdfPublicId: String,
       generatedImageUrl: String,
       generatedPdfUrl: String,
       status: {

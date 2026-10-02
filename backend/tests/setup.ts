@@ -16,23 +16,19 @@ export async function setupTestApp() {
   const { seedTemplateRecords, seedTemplates } =
     await import("../src/seed/templates.seed.js");
   await seedTemplateRecords();
-  const owner = await request(app)
-    .post("/api/auth/register")
-    .send({
-      name: "Owner",
-      email: "owner@example.com",
-      password: "password123",
-    });
+  const owner = await request(app).post("/api/auth/register").send({
+    name: "Owner",
+    email: "owner@example.com",
+    password: "password123",
+  });
   const other = await request(app)
     .post("/api/auth/register")
     .send({ name: "Other", phone: "+8801700000000", password: "password123" });
-  const admin = await request(app)
-    .post("/api/auth/register")
-    .send({
-      name: "Admin",
-      email: "admin@example.com",
-      password: "password123",
-    });
+  const admin = await request(app).post("/api/auth/register").send({
+    name: "Admin",
+    email: "admin@example.com",
+    password: "password123",
+  });
   await User.findByIdAndUpdate(admin.body.user.id, { role: "admin" });
   const templates = await request(app).get(
     "/api/templates?occasionType=victory-day",
@@ -62,4 +58,5 @@ export const formData = {
   district: "District",
   occasionType: "victory-day",
   headline: "Headline",
+  photoConsent: true,
 };

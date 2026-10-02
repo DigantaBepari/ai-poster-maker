@@ -34,3 +34,5 @@ export async function deleteTemplate(id: string) {
   if (!t) throw new ApiError(404, "NOT_FOUND", "Template not found");
   return t;
 }
+
+export const adminTemplates = () => Template.find().sort({ createdAt: -1 });

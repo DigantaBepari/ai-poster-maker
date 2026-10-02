@@ -6,6 +6,8 @@ export const GenerationLog = model(
       posterId: { type: Schema.Types.ObjectId, ref: "Poster", required: true },
       geminiPromptUsed: String,
       tokensUsed: Number,
+      failedStage: String,
+      failureCode: String,
       latencyMs: Number,
       success: { type: Boolean, required: true },
     },

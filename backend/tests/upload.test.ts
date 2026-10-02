@@ -12,6 +12,7 @@ it("requires authentication, a photo and supported image contents", async () => 
     (
       await request(ctx.app)
         .post("/api/upload")
+        .field("photoConsent", "true")
         .auth(ctx.token, { type: "bearer" })
     ).status,
   ).toBe(400);
@@ -19,6 +20,7 @@ it("requires authentication, a photo and supported image contents", async () => 
     (
       await request(ctx.app)
         .post("/api/upload")
+        .field("photoConsent", "true")
         .auth(ctx.token, { type: "bearer" })
         .attach("photo", Buffer.from("fake"), {
           filename: "fake.png",
@@ -30,6 +32,7 @@ it("requires authentication, a photo and supported image contents", async () => 
     (
       await request(ctx.app)
         .post("/api/upload")
+        .field("photoConsent", "true")
         .auth(ctx.token, { type: "bearer" })
         .attach("photo", Buffer.from("svg"), {
           filename: "test.svg",
@@ -52,6 +55,7 @@ it("rejects uploads over 5 MB and multiple photos", async () => {
     (
       await request(ctx.app)
         .post("/api/upload")
+        .field("photoConsent", "true")
         .auth(ctx.token, { type: "bearer" })
         .attach("photo", Buffer.from("x"), {
           filename: "one.png",

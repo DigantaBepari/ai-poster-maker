@@ -6,6 +6,7 @@ import { routes } from "./routes/index.js";
 import { notFound } from "./middleware/notFound.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 export const app = express();
+app.set("trust proxy", env.TRUST_PROXY_HOPS);
 app.use(
   helmet(),
   cors({ origin: env.CLIENT_URL }),

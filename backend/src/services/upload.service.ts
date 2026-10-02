@@ -1,10 +1,19 @@
+import { storageFailure } from "./storageFailure.js";
+import { logger } from "../utils/logger.js";
 import { cloudinary } from "../config/cloudinary.js";
 import { env } from "../config/env.js";
 import { ApiError } from "../utils/ApiError.js";
 export async function uploadPhoto(
   file: Express.Multer.File | undefined,
   userId: string,
+  photoConsent: unknown,
 ) {
+  if (photoConsent !== "true")
+    throw new ApiError(
+      422,
+      "PHOTO_CONSENT_REQUIRED",
+      "ছবি ব্যবহারের অনুমতি নিশ্চিত করুন।",
+    );
   if (!file) throw new ApiError(400, "MISSING_PHOTO", "Photo is required");
   const b = file.buffer;
   const jpeg = b[0] === 255 && b[1] === 216 && b[2] === 255;
@@ -30,9 +39,16 @@ export async function uploadPhoto(
     const stream = cloudinary.uploader.upload_stream(
       { folder: "political-posters/" + userId, resource_type: "image" },
       (error, result) => {
-        if (error || !result)
-          reject(new ApiError(502, "UPLOAD_FAILED", "Photo upload failed"));
-        else resolve({ url: result.secure_url, publicId: result.public_id });
+        if (error || !result) {
+          const failure = storageFailure(error);
+          logger.error(
+            JSON.stringify({
+              event: "photo_upload_failed",
+              code: failure.code,
+            }),
+          );
+          reject(failure);
+        } else resolve({ url: result.secure_url, publicId: result.public_id });
       },
     );
     stream.end(b);

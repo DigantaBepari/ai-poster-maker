@@ -9,12 +9,14 @@ import { seedTemplateRecords, seedTemplates } from "./templates.seed.js";
 import { templateThumbnail } from "./thumbnail.js";
 import { logger } from "../utils/logger.js";
 try {
-  const folder = fileURLToPath(
-    new URL("../../../frontend/public/templates/", import.meta.url),
-  );
-  await mkdir(folder, { recursive: true });
-  for (const t of seedTemplates)
-    await writeFile(folder + t.occasionType + ".svg", templateThumbnail(t));
+  if (env.NODE_ENV !== "production") {
+    const folder = fileURLToPath(
+      new URL("../../../frontend/public/templates/", import.meta.url),
+    );
+    await mkdir(folder, { recursive: true });
+    for (const t of seedTemplates)
+      await writeFile(folder + t.occasionType + ".svg", templateThumbnail(t));
+  }
   await connectDb();
   await User.init();
   await seedTemplateRecords();

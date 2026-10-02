@@ -28,6 +28,9 @@ export function Navbar() {
             >
               আমার পোস্টার
             </Link>
+            {user.role === "admin" && (
+              <Link href="/admin/templates">অ্যাডমিন</Link>
+            )}
             <button onClick={logout} className="nav-logout">
               লগ আউট
             </button>

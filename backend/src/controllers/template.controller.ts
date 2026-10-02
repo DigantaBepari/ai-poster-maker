@@ -15,3 +15,7 @@ export const update = asyncHandler(async (req, res) => {
 export const remove = asyncHandler(async (req, res) => {
   res.json(await s.deleteTemplate(String(req.params.id)));
 });
+
+export const adminList = asyncHandler(async (_req, res) => {
+  res.json(await s.adminTemplates());
+});

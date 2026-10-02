@@ -1,3 +1,7 @@
+import { vi } from "vitest";
+vi.mock("../src/services/poster/posterQueue.js", () => ({
+  posterQueue: { assertAvailable: vi.fn(), enqueue: vi.fn() },
+}));
 import { beforeAll, afterAll, it, expect } from "vitest";
 import request from "supertest";
 import { setupTestApp, teardownTestApp, formData } from "./setup.js";
@@ -13,10 +17,12 @@ const draft = () =>
     .send({ templateId: ctx.templateId, formData, uploadedPhotoUrls: [] });
 it("creates, gets, lists, and deletes an owned draft", async () => {
   const r = await draft();
-  expect(r.status).toBe(201);
-  expect(r.body.status).toBe("draft");
+  expect(r.status).toBe(202);
+  expect(r.body.status).toBe("generating");
   expect(r.body.retryCount).toBe(0);
   const id = r.body._id;
+  const { Poster } = await import("../src/models/Poster.js");
+  await Poster.findByIdAndUpdate(id, { status: "completed" });
   expect(
     (
       await request(ctx.app)
@@ -49,6 +55,8 @@ it("creates, gets, lists, and deletes an owned draft", async () => {
 it("denies foreign users every poster action and allows admin access", async () => {
   const r = await draft();
   const id = r.body._id;
+  const { Poster } = await import("../src/models/Poster.js");
+  await Poster.findByIdAndUpdate(id, { status: "completed" });
   for (const method of ["get", "delete"] as const)
     expect(
       (
@@ -84,7 +92,7 @@ it("denies foreign users every poster action and allows admin access", async () 
         .post("/api/posters/" + id + "/regenerate")
         .auth(ctx.token, { type: "bearer" })
     ).status,
-  ).toBe(501);
+  ).toBe(202);
   await request(ctx.app)
     .delete("/api/posters/" + id)
     .auth(ctx.adminToken, { type: "bearer" });

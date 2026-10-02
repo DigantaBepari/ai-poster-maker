@@ -21,7 +21,7 @@ export function TemplateCard({ template }: { template: Template }) {
         <span className="eyebrow">{occasionLabels[template.occasionType]}</span>
         <h3>{template.title}</h3>
         <Link href={"/posters/new?templateId=" + template._id}>
-          টেমপ্লেট দেখুন <span>↗</span>
+          এই টেমপ্লেট ব্যবহার করুন <span>↗</span>
         </Link>
       </div>
     </article>

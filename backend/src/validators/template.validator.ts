@@ -4,7 +4,12 @@ const positive = z.number().positive();
 const color = z.string().regex(/^#[0-9a-fA-F]{6}$/);
 export const layoutSchema = z
   .object({
-    canvas: z.object({ width: positive, height: positive }).strict(),
+    canvas: z
+      .object({
+        width: z.number().min(100).max(3000),
+        height: z.number().min(100).max(3000),
+      })
+      .strict(),
     photoSlots: z
       .array(
         z
@@ -67,7 +72,11 @@ export const templateSchema = z
     occasionType: z.enum(occasions),
     thumbnailUrl: z
       .string()
-      .refine((v) => v.startsWith("/templates/") || URL.canParse(v)),
+      .refine(
+        (v) =>
+          v.startsWith("/templates/") ||
+          (URL.canParse(v) && new URL(v).protocol === "https:"),
+      ),
     layoutConfig: layoutSchema,
     isActive: z.boolean().default(true),
   })

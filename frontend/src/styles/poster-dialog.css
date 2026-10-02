@@ -1,0 +1,33 @@
+.edit-dialog {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 25px;
+  background: var(--paper);
+  color: var(--ink);
+  width: min(550px, 94vw);
+  max-height: 90vh;
+  margin: auto;
+}
+.edit-dialog::backdrop {
+  background: #183b3180;
+}
+.edit-dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.edit-dialog h2 {
+  font-size: 23px;
+  margin: 0;
+}
+.edit-dialog p {
+  font-size: 12px;
+}
+.edit-dialog .page-heading {
+  margin: 0;
+}
+.edit-dialog .page-heading button {
+  border: 0;
+  background: none;
+  font-size: 25px;
+}

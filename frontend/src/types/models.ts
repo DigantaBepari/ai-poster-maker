@@ -67,12 +67,15 @@ export interface Poster {
     district: string;
     occasionType: Occasion;
     headline: string;
+    photoConsent: boolean;
   };
   uploadedPhotoUrls: string[];
   generatedImageUrl?: string;
   generatedPdfUrl?: string;
   status: "draft" | "generating" | "completed" | "failed";
   retryCount: number;
+  remainingRegenerations?: number;
+  maxRegenerations?: number;
   flagged: boolean;
   errorMessage?: string;
   createdAt: string;

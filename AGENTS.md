@@ -1,11 +1,15 @@
 # Project conventions
 
-Stack: Node 24, strict TypeScript, Next.js App Router + Tailwind in frontend, Express + Mongoose in backend. Storage uses Cloudinary; auth uses bcrypt and JWT.
+Node 24, strict TypeScript. Frontend: Next.js App Router + Tailwind. Backend: Express + Mongoose. Auth: bcrypt/JWT. Storage: Cloudinary authenticated generated outputs. Rendering: Puppeteer + sharp + embedded npm Bangla fonts. Gemini uses official @google/genai, with model from runtime env.
 
-Backend flow: routes → middleware/validators → controllers → services → models. Config belongs in src/config; reusable utilities in src/utils; shared types in src/types. Frontend app routes compose components and feature modules; API calls go through lib/apiClient.
+Backend flow: routes → middleware/validators → controllers → services → models. Routes have no logic; controllers map requests/responses; services own moderation, ownership, retries and generation. Frontend features hold auth, templates, posters and admin logic; pages compose small components.
 
-Keep each file focused; aim for 150 lines or fewer where practical. Validate all API writes with Zod. Use consistent { error: { code, message, details? } } responses. Enforce ownership in services, not only routes. Admin authorization must use the persisted role. Preserve Bangla text as UTF-8. Never commit secrets. Never create, read, or print real .env files during agent work. Only empty .env.example files may be generated. Do not commit without explicit user instruction.
+One responsibility per file, aim for 150 lines or fewer. Validate API writes with Zod and escape all user text in HTML. Gemini supplies styling only, never draws Bangla or provides raw HTML/CSS. Chromium shapes exact text and shrinks it to fit. Block renderer network requests; photos use bounded owned Cloudinary downloads and sharp re-encoding.
 
-Run typecheck, lint, build in both apps; run backend tests using mongodb-memory-server. Use npm.cmd on PowerShell when script execution policies block npm.ps1.
+Never commit secrets. Never create, read or print real .env files during agent work. Only empty .env.example files may be generated. Never request pasted secrets. Do not commit without explicit authorization.
 
-Prompt 2: implement poster form, history and detail pages; add generation orchestration in poster.service, Gemini content generation, safe typed layout rendering, Puppeteer PNG/PDF export, Cloudinary result storage, GenerationLog entries, atomic retry limits using MAX_REGENERATIONS, failure recovery and cleanup. Never inject untrusted HTML into the renderer. Keep API contracts and current ownership protections intact. No generation implementation belongs in prompt 1.
+Run typecheck, lint and build in each app; backend npm run test includes isolated MongoDB, Gemini/Cloudinary mocks, real-browser fallback export, moderation, consent, retries, downloads and ownership. npm run render:sample writes key-free PNG/PDF examples to backend/output; inspect them after renderer changes. Use npm.cmd when PowerShell blocks npm.ps1.
+
+Queue concurrency is 1–2. Keep retries atomic. Always persist GenerationLog for success/failure and latency. Recover interrupted jobs at startup. Enforce flags on read/download and consent before upload/generation. Clean superseded generated assets. Check DEPLOY.md before deployment changes. Use one backend instance until queue and rate-limit state move to shared stores.
+
+Before changing frontend framework APIs, read the matching guides bundled in frontend/node_modules/next/dist/docs/. next.config.ts disables automatically generated duplicate agent files; keep project conventions here.

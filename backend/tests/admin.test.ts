@@ -1,3 +1,7 @@
+import { vi } from "vitest";
+vi.mock("../src/services/poster/posterQueue.js", () => ({
+  posterQueue: { assertAvailable: vi.fn(), enqueue: vi.fn() },
+}));
 import { beforeAll, afterAll, it, expect } from "vitest";
 import request from "supertest";
 import { setupTestApp, teardownTestApp, formData } from "./setup.js";
